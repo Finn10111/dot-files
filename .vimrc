@@ -6,6 +6,20 @@
 
 " Install Vundle:
 "  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"
+" Install YouCompleteMe:
+" cd ~/.vim/bundle/YouCompleteMe
+" python3 install.py
+" or
+" python3 install.py --all
+"
+" Install Nerd FOnts (needed for devicons)
+" wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip
+" unzip Hack.zip
+" move to /usr/local/share/fonts
+" fc-update
+" set font in terminal
+
 set encoding=utf8
 
 """" START Vundle Configuration
@@ -16,6 +30,7 @@ filetype off                  " required
 " Support GitHub and GitLab
 let github = 'https://github.com/'
 let gitlab = 'https://gitlab.com/'
+let mapleader=","
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -73,9 +88,11 @@ Plugin github.'tpope/vim-fugitive'
 
 " PHP Support
 " cd .vim/bundle/phpcd.vim/ && composer install
-Plugin github.'lvht/phpcd.vim'
+"Plugin github.'lvht/phpcd.vim'
+Plugin github.'shawncplus/phpcomplete.vim'
 Plugin github.'tobyS/pdv'
 Plugin github.'stephpy/vim-php-cs-fixer'
+Plugin github.'Valloric/YouCompleteMe'
 
 " Python support
 Plugin github.'nvie/vim-flake8'
@@ -103,6 +120,10 @@ Plugin github.'atelierbram/Base2Tone-vim'
 Plugin github.'colepeters/spacemacs-theme.vim'
 Plugin github.'dylanaraps/wal.vim'
 Plugin github.'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+
+" Twig
+Plugin github.'nelsyeung/twig.vim'
+
 
 " color scheme
 Plugin gitlab.'/yorickpeterse/happy_hacking.vim'
@@ -214,7 +235,8 @@ augroup END
 
 " Vim-UtilSnips Configuration
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
@@ -320,7 +342,8 @@ nmap <silent> <leader>g :TestVisit<CR>
 " Vim-PDV Mappings
 autocmd FileType php inoremap <C-p> <ESC>:call pdv#DocumentWithSnip()<CR>i
 autocmd FileType php nnoremap <C-p> :call pdv#DocumentWithSnip()<CR>
-autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
+" autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Disable arrow movement, resize splits instead.
 if get(g:, 'elite_mode')
@@ -338,3 +361,9 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " Vim-Alchemist Mappings
 autocmd FileType elixir nnoremap <buffer> <leader>h :call alchemist#exdoc()<CR>
 autocmd FileType elixir nnoremap <buffer> <leader>d :call alchemist#exdef()<CR>
+
+let g:ycm_key_invoke_completion = "<C-Space>"
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+set completeopt=longest,menuone
+imap <tab><tab> <c-x><c-o>
