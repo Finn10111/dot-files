@@ -81,6 +81,7 @@ Plugin github.'jtratner/vim-flavored-markdown'
 Plugin github.'LanguageTool'
 
 " Git Support
+Plugin github.'airblade/vim-gitgutter'
 Plugin github.'kablamo/vim-git-log'
 Plugin github.'gregsexton/gitv'
 Plugin github.'tpope/vim-fugitive'
@@ -320,10 +321,13 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-" Shortcuts
-nnoremap <Leader>o :Files<CR>
-nnoremap <Leader>O :CtrlP<CR>
-nnoremap <Leader>w :w<CR>
+" CTRL-P
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_map = '<c-f>'
+map <leader>j :CtrlP<cr>
+map <c-b> :CtrlPBuffer<cr>
+let g:ctrlp_max_height = 20
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
