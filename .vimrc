@@ -73,6 +73,8 @@ Plugin github.'neomake/neomake'
 Plugin github.'w0rp/ale'
 Plugin github.'ludovicchabant/vim-gutentags'
 Plugin github.'vim-vdebug/vdebug'
+Plugin github.'mustache/vim-mustache-handlebars'
+
 
 " Markdown / Writting
 Plugin github.'reedes/vim-pencil'
@@ -369,4 +371,12 @@ let g:ycm_key_invoke_completion = "<C-Space>"
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 set completeopt=longest,menuone
-imap <tab><tab> <c-x><c-o>
+imap <c><tab> <c-x><c-o>
+
+" ALE fixers
+let b:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'python': ['autopep8'],
+\   'php': ['php_cs_fixer'],
+\}
