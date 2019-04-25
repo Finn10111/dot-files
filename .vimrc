@@ -19,6 +19,10 @@
 " move to /usr/local/share/fonts
 " fc-update
 " set font in terminal
+"
+" Install php cs fixer:
+" https://github.com/FriendsOfPHP/PHP-CS-Fixer
+" or via your package manager
 
 set encoding=utf8
 
@@ -380,3 +384,6 @@ let b:ale_fixers = {
 \   'python': ['autopep8'],
 \   'php': ['php_cs_fixer'],
 \}
+
+let g:php_cs_fixer_rules = "@PSR2"
+let g:gitgutter_max_signs = 10240
