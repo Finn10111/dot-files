@@ -375,7 +375,8 @@ let g:ycm_key_invoke_completion = "<C-Space>"
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 set completeopt=longest,menuone
-imap <c><tab> <c-x><c-o>
+imap <c-c> <c-x><c-o>
+
 
 " ALE fixers
 let b:ale_fixers = {
@@ -387,3 +388,4 @@ let b:ale_fixers = {
 
 let g:php_cs_fixer_rules = "@PSR2"
 let g:gitgutter_max_signs = 10240
+let g:ale_lint_on_text_changed = 'never'
