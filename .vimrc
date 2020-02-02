@@ -67,17 +67,16 @@ Plugin github.'vim-scripts/mru.vim'
 " Plugin github.'jakedouglas/exuberant-ctags'
 Plugin github.'universal-ctags/ctags'
 Plugin github.'honza/vim-snippets'
-"Plugin github.'Townk/vim-autoclose'
 Plugin github.'tomtom/tcomment_vim'
 Plugin github.'tobyS/vmustache'
 Plugin github.'janko-m/vim-test'
 Plugin github.'maksimr/vim-jsbeautify'
-Plugin github.'vim-syntastic/syntastic'
 Plugin github.'neomake/neomake'
 Plugin github.'w0rp/ale'
 Plugin github.'ludovicchabant/vim-gutentags'
 Plugin github.'vim-vdebug/vdebug'
 Plugin github.'mustache/vim-mustache-handlebars'
+Plugin github.'joukevandermaas/vim-ember-hbs'
 
 
 " Markdown / Writting
@@ -196,18 +195,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='hybrid'
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
-
-" Syntastic Configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_enable_elixir_checker = 1
-" let g:syntastic_elixir_checkers = ["elixir"]
 
 " Neomake settings
 autocmd! BufWritePost * Neomake
@@ -384,8 +371,18 @@ let b:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'python': ['autopep8'],
 \   'php': ['php_cs_fixer'],
+\   'handlebars': ['ember-template-lint'],
 \}
+let b:ale_linters = {
+\   'handlebars': ['ember-template-lint'],
+\}
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:php_cs_fixer_rules = "@PSR2"
 let g:gitgutter_max_signs = 10240
-let g:ale_lint_on_text_changed = 'never'
+let g:mustache_operators = 1
+autocmd Filetype html.handlebars setlocal ts=2 sw=2 expandtab
