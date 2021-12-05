@@ -366,15 +366,17 @@ imap <c-c> <c-x><c-o>
 
 
 " ALE fixers
-let b:ale_fixers = {
+let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'python': ['autopep8'],
 \   'php': ['php_cs_fixer'],
 \   'handlebars': ['ember-template-lint'],
+\   'html': ['html-beautify'],
 \}
-let b:ale_linters = {
+let g:ale_linters = {
 \   'handlebars': ['ember-template-lint'],
+\   'html': ['html-beautify'],
 \}
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
@@ -382,7 +384,13 @@ let g:ale_linters_explicit = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 1
+
 let g:php_cs_fixer_rules = "@PSR2"
 let g:gitgutter_max_signs = 10240
 let g:mustache_operators = 1
 autocmd Filetype html.handlebars setlocal ts=2 sw=2 expandtab
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
